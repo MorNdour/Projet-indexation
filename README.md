@@ -40,13 +40,13 @@ apt update
 apt -y upgrade
 apt install openjdk-8-jdk
 
-- Installation de  Scala
-apt install scala
-apt install curl
-curl -O https://archive.apache.org/dist/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
-tar xvf spark-2.4.5-bin-hadoop2.7.tgz
-mv spark-2.4.5-bin-hadoop2.7 /opt/spark
-rm spark-2.4.5-bin-hadoop2.7.tgz
+- Installation de  Scala \
+    apt install scala
+    apt install curl
+    curl -O https://archive.apache.org/dist/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
+    tar xvf spark-2.4.5-bin-hadoop2.7.tgz
+    mv spark-2.4.5-bin-hadoop2.7 /opt/spark
+    rm spark-2.4.5-bin-hadoop2.7.tgz
 
 -  Mise en place de l'environnement Spark
 vim ~/.bashrc
