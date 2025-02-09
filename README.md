@@ -28,32 +28,47 @@ Après avoir testé nos différents services, nous avons créé les fichiers sui
 ### Étape 3 : Démarrage d'un conteneur pour une instance Spark
 
 - Télécharger l'image de base de spark
+
   docker pull ubuntu
 - création du conteneur spark: Créez un conteneur à partir de l'image Ubuntu et connectez-le au réseau du groupe de conteneurs pour permettre la communication
-  docker run -itd --network=projet_default -p 8080:8080 --name spark --hostname spark ubuntu
+  
+    docker run -itd --network=projet_default -p 8080:8080 --name spark --hostname spark ubuntu
 
 - connection au conteneur spark en mode bash
+
   docker exec -it spark /bin/bash
 
 - Installation de Java
-apt update
-apt -y upgrade
-apt install openjdk-8-jdk
 
-- Installation de  Scala \
+    apt update
+    
+    apt -y upgrade
+    
+    apt install openjdk-8-jdk
+
+- Installation de  Scala
+
     apt install scala
+
     apt install curl
+
     curl -O https://archive.apache.org/dist/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
+    
     tar xvf spark-2.4.5-bin-hadoop2.7.tgz
+    
     mv spark-2.4.5-bin-hadoop2.7 /opt/spark
+   
     rm spark-2.4.5-bin-hadoop2.7.tgz
 
 -  Mise en place de l'environnement Spark
-vim ~/.bashrc
 
-export SPARK_HOME=/opt/spark
-export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
-source ~/.bashrc
+    vim ~/.bashrc
+
+    export SPARK_HOME=/opt/spark
+
+    export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+
+    source ~/.bashrc
 
 ### Étape 4 : Création et exécution d'un job Spark
 Après avoir installé et configuré notre cluster Spark, nous avons créé les fichiers suivants :
@@ -62,9 +77,13 @@ Après avoir installé et configuré notre cluster Spark, nous avons créé les 
 - run_spark.sh : Ce script exécute le job Spark en lançant le shell sur notre cluster Spark.
 
 Nous avons ensuite copié ces deux fichiers dans un répertoire du conteneur Spark à l'aide des commandes suivantes :
+
   docker cp  run_spark.sh spark:/home/ubuntu
+  
   docker cp job_spark.scala  spark:/home/ubuntu
 
 Enfin, nous avons donné les permissions d'exécution au script et l'avons lancé :
+  
   chmod +x run_spark.sh
+  
   ./run_spark.sh
