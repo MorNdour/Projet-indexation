@@ -36,24 +36,24 @@ Après avoir testé nos différents services, nous avons créé les fichiers sui
   docker exec -it spark /bin/bash
 
 - Installation de Java
-  apt update
-  apt -y upgrade
-  apt install openjdk-8-jdk
+apt update
+apt -y upgrade
+apt install openjdk-8-jdk
 
 - Installation de  Scala
-  apt install scala
-  apt install curl
-  curl -O https://archive.apache.org/dist/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
-  tar xvf spark-2.4.5-bin-hadoop2.7.tgz
-  mv spark-2.4.5-bin-hadoop2.7 /opt/spark
-  rm spark-2.4.5-bin-hadoop2.7.tgz
+apt install scala
+apt install curl
+curl -O https://archive.apache.org/dist/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
+tar xvf spark-2.4.5-bin-hadoop2.7.tgz
+mv spark-2.4.5-bin-hadoop2.7 /opt/spark
+rm spark-2.4.5-bin-hadoop2.7.tgz
 
 -  Mise en place de l'environnement Spark
-  vim ~/.bashrc
+vim ~/.bashrc
 
-  export SPARK_HOME=/opt/spark
-  export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
-  source ~/.bashrc
+export SPARK_HOME=/opt/spark
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+source ~/.bashrc
 
 ### Étape 4 : Création et exécution d'un job Spark
 Après avoir installé et configuré notre cluster Spark, nous avons créé les fichiers suivants :
