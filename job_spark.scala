@@ -40,7 +40,7 @@ object AirPollutionJob {
     // Enregistrement des résultats dans un fichier CSV dans /home/ubuntu
     parsedDF.write
       .option("header", "true")
-      .csv("/home/ubuntu/air_pollution_output.csv")
+      .csv("/home/ubuntu/air_pollution_data.csv")
 
     spark.stop()
   }

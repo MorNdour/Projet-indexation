@@ -17,10 +17,9 @@ topics_list = admin.list_topics()
 # Admin logic
 
 if KAFKA_TOPIC not in topics_list:
-  topics = [NewTopic(name="air_pollution_data", num_partitions=2, 
-replication_factor=1)]
+  topics = [NewTopic(name=KAFKA_TOPIC, num_partitions=2,replication_factor=1)]
   admin.create_topics(new_topics=topics, validate_only=False)
-  print("air_pollution_data topic is successful created")
+  print("{} topic is successful created".format(KAFKA_TOPIC))
 
 else:
        print(topics_list)

@@ -82,6 +82,13 @@ Nous avons ensuite copié ces deux fichiers dans un répertoire du conteneur Spa
   
   docker cp job_spark.scala  spark:/home/ubuntu
 
+Ensuite on a compiler le fichier job_spark.scala en jar
+
+  scalac -classpath "$SPARK_HOME/jars/*" job_spark.scala
+  
+  jar cvf job_spark.jar *.class
+
+
 Enfin, nous avons donné les permissions d'exécution au script et l'avons lancé :
   
   chmod +x run_spark.sh
