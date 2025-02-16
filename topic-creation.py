@@ -22,4 +22,4 @@ if KAFKA_TOPIC not in topics_list:
   print("{} topic is successful created".format(KAFKA_TOPIC))
 
 else:
-       print(topics_list)
+  print(topics_list)

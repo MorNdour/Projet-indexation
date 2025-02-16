@@ -22,24 +22,24 @@ object WeatherDataJob {
     // Sélection des colonnes pertinentes
     val parsedDF = weatherDataDf.select(
       col("@timestamp").alias("timestamp"),
-      col("coord.lat").alias("latitude"),
-      col("coord.lon").alias("longitude"),
-      col("weather.main").alias("weather_condition"),
-      col("main.temp").alias("temperature"),
-      col("main.feels_like").alias("feels_like"),
-      col("main.pressure").alias("pressure"),
-      col("main.humidity").alias("humidity"),
-      col("wind.speed").alias("wind_speed"),
-      col("wind.deg").alias("wind_direction")
+      col("location").getField("lat").alias("latitude"),
+      col("location").getField("lon").alias("longitude"),
+      col("weather").getItem(0).getField("main").alias("weather_condition"), // Si 'weather' est un tableau
+      col("main").getField("temp").alias("temperature"),
+      col("main").getField("feels_like").alias("feels_like"),
+      col("main").getField("pressure").alias("pressure"),
+      col("main").getField("humidity").alias("humidity"),
+      col("wind").getField("speed").alias("wind_speed"),
+      col("wind").getField("deg").alias("wind_direction")
     )
 
     // Affichage des résultats
     parsedDF.show()
 
     // Sauvegarde des résultats au format CSV
-    parsedDF.write
-      .option("header", "true")
-      .csv("/home/ubuntu/weather_data.csv")
+    // parsedDF.write
+    //   .option("header", "true")
+    //   .csv("/home/ubuntu/weather_data.csv")
 
     // Arrêt de Spark
     spark.stop()
