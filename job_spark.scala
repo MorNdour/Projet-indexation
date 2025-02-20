@@ -33,13 +33,26 @@ object WeatherDataJob {
       col("wind").getField("deg").alias("wind_direction")
     )
 
-    // Affichage des résultats
-    parsedDF.show()
+        // Convertir le timestamp en date (sans l'heure)
+    val dfWithDate = parsedDF.withColumn("date", to_date(col("timestamp")))
+
+    // Grouper par jour et calculer les moyennes
+    val aggregatedDF = dfWithDate.groupBy("date")
+      .agg(
+        avg("temperature").alias("avg_temperature"),
+        avg("pressure").alias("avg_pressure"),
+        avg("humidity").alias("avg_humidity"),
+        avg("wind_speed").alias("avg_wind_speed")
+      )
+      .orderBy("date") // Optionnel : trier par date
+
+    // Afficher le résultat
+    aggregatedDF.show()
 
     // Sauvegarde des résultats au format CSV
-    // parsedDF.write
-    //   .option("header", "true")
-    //   .csv("/home/ubuntu/weather_data.csv")
+    parsedDF.write
+      .option("header", "true")
+      .csv("/home/ubuntu/static_weather_data.csv")
 
     // Arrêt de Spark
     spark.stop()

@@ -38,4 +38,4 @@ if __name__ == "__main__":
         producer.flush()
 
         # Attendre 60 secondes avant la prochaine requête (exemple)
-        time.sleep(60)
+        time.sleep(600)
